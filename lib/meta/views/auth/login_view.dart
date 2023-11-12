@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Color mainColor = Color(0xFF009BFF);
+final TextStyle mainFont = GoogleFonts.raleway();
+final TextStyle titleFont = GoogleFonts.kanit(
+    color: mainColor, fontWeight: FontWeight.bold, fontSize: 50);
 
 class LoginView extends StatelessWidget {
   @override
@@ -11,16 +14,10 @@ class LoginView extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(
-              'MyScrum',
-              style: GoogleFonts.kanit(
-                  color: mainColor, fontWeight: FontWeight.bold, fontSize: 50),
-            ),
+            Text('MyScrum', style: titleFont),
             SizedBox(height: 10),
-            Text(
-              'Organizate junto a tus proyectos',
-              style: TextStyle(fontSize: 15),
-            ),
+            Text('Organizate junto a tus proyectos',
+                style: mainFont.copyWith(fontSize: 15)),
             SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -68,13 +65,11 @@ class LoginView extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: mainColor, borderRadius: BorderRadius.circular(12)),
                 child: Center(
-                  child: Text(
-                    'Iniciar Sesión',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
+                  child: Text('Iniciar Sesión',
+                      style: mainFont.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18)),
                 ),
               ),
             ),
@@ -83,7 +78,7 @@ class LoginView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('¿No tienes una cuenta? ',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                    style: mainFont.copyWith(fontWeight: FontWeight.bold)),
                 Text(
                   'Registrate',
                   style:
