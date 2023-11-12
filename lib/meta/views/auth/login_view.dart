@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Color mainColor = Color(0xFF009BFF);
 
@@ -12,14 +13,15 @@ class LoginView extends StatelessWidget {
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(
               'MyScrum',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+              style: GoogleFonts.kanit(
+                  color: mainColor, fontWeight: FontWeight.bold, fontSize: 50),
             ),
             SizedBox(height: 10),
             Text(
-              'Iniciar sesión ahora',
-              style: TextStyle(fontSize: 20),
+              'Organizate junto a tus proyectos',
+              style: TextStyle(fontSize: 15),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Container(
@@ -38,7 +40,7 @@ class LoginView extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Container(
@@ -58,7 +60,7 @@ class LoginView extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Container(
@@ -76,7 +78,7 @@ class LoginView extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
