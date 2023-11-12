@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_scrum/app/providers/app_provider.dart';
+import 'package:my_scrum/app/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(const App());
@@ -19,6 +20,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: AppRoutes.LoginRoute,
+      routes: AppRoutes.routes,
       debugShowCheckedModeBanner: false,
     );
   }
