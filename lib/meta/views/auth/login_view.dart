@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 const mainColor = Color(0xFF009BFF);
 final TextStyle titleFont = GoogleFonts.play(
-    color: mainColor, fontWeight: FontWeight.bold, fontSize: 45);
+    color: mainColor, fontWeight: FontWeight.bold, fontSize: 50);
 final TextStyle mainFont = GoogleFonts.raleway();
 
 class LoginView extends StatefulWidget {
@@ -36,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
             Text('MyScrum', style: titleFont),
             const SizedBox(height: 10),
             Text('Organizate junto a tus proyectos',
-                style: mainFont.copyWith(fontSize: 13)),
+                style: mainFont.copyWith(fontSize: 15)),
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -123,7 +123,7 @@ class _LoginViewState extends State<LoginView> {
                 child: RichText(
                     text: const TextSpan(
                         text: '¿No tienes una cuenta? ',
-                        style: TextStyle(),
+                        style: TextStyle(color: Colors.black),
                         children: <TextSpan>[
                       TextSpan(
                           text: 'Registrate',

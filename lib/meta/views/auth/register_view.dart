@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 const mainColor = Color(0xFF009BFF);
 final TextStyle titleFont = GoogleFonts.play(
-    color: mainColor, fontWeight: FontWeight.bold, fontSize: 30);
+    color: mainColor, fontWeight: FontWeight.bold, fontSize: 35);
 final TextStyle mainFont = GoogleFonts.raleway();
 
 class RegisterView extends StatefulWidget {
@@ -122,7 +122,7 @@ class _LoginViewState extends State<RegisterView> {
                 child: RichText(
                     text: const TextSpan(
                         text: '¿Ya tienes una cuenta? ',
-                        style: TextStyle(),
+                        style: TextStyle(color: Colors.black),
                         children: <TextSpan>[
                       TextSpan(
                           text: 'Inicia sesión',
