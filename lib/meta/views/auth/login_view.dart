@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_scrum/app/routes/app_routes.dart';
+import 'package:my_scrum/core/notifier/auth_notifier.dart';
+import 'package:provider/provider.dart';
 
 const mainColor = Color(0xFF009BFF);
 final TextStyle titleFont = GoogleFonts.play(
@@ -25,6 +27,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    final AuthenticationNotifier authenticationNotifier =
+        Provider.of<AuthenticationNotifier>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -80,16 +84,31 @@ class _LoginViewState extends State<LoginView> {
             const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                padding: const EdgeInsets.all(18),
-                decoration: BoxDecoration(
-                    color: mainColor, borderRadius: BorderRadius.circular(12)),
-                child: Center(
-                  child: Text('Iniciar Sesión',
-                      style: mainFont.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16)),
+              child: InkWell(
+                onTap: () {
+                  String email = emailController.text;
+                  String password = passwordController.text;
+
+                  if (email.isNotEmpty && password.isNotEmpty) {
+                    authenticationNotifier.login(
+                        email: email, password: password);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Complete los datos')));
+                  }
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration: BoxDecoration(
+                      color: mainColor,
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Center(
+                    child: Text('Iniciar Sesión',
+                        style: mainFont.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16)),
+                  ),
                 ),
               ),
             ),

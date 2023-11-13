@@ -2,7 +2,8 @@ import 'package:my_scrum/app/credentials/supabase_credentials.dart';
 import 'package:supabase/supabase.dart';
 
 class AuthenticationService {
-  Future<void> signUp({required String email, required String password}) async {
+  Future<String?> signUp(
+      {required String email, required String password}) async {
     GotrueSessionResponse response =
         await SupabaseCredentials.supabaseClient.auth.signUp(email, password);
 
@@ -14,7 +15,8 @@ class AuthenticationService {
     }
   }
 
-  Future<void> login({required String email, required String password}) async {
+  Future<String?> login(
+      {required String email, required String password}) async {
     GotrueSessionResponse response =
         await SupabaseCredentials.supabaseClient.auth.signIn(
             email: email,
