@@ -90,8 +90,13 @@ class _LoginViewState extends State<RegisterView> {
                     authenticationNotifier.signUp(
                         context: context, email: email, password: password);
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Complete los datos')));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                        'Complete los datos',
+                        style: mainFont.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      backgroundColor: mainColor,
+                    ));
                   }
                 },
                 child: Container(

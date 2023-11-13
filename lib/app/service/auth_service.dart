@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_scrum/app/credentials/supabase_credentials.dart';
+import 'package:my_scrum/meta/views/auth/register_view.dart';
 import 'package:supabase/supabase.dart';
 
 class AuthenticationService {
@@ -11,12 +12,22 @@ class AuthenticationService {
         await SupabaseCredentials.supabaseClient.auth.signUp(email, password);
 
     if (response.error == null) {
-      String? userID = response.data!.user!.id;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Registro exitoso : $userID')));
+      String? userEmail = response.data!.user!.email;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Registro exitoso',
+          style: mainFont.copyWith(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.green,
+      ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Registro invalido ${response.error!.message}')));
+        content: Text(
+          'Registro invalido',
+          style: mainFont.copyWith(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.red,
+      ));
     }
   }
 
@@ -35,8 +46,13 @@ class AuthenticationService {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Bienvenido')));
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Datos erroneos${response.error!.message}')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Datos incorrectos',
+          style: mainFont.copyWith(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.red,
+      ));
     }
   }
 }
