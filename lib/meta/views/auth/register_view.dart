@@ -7,12 +7,12 @@ final TextStyle titleFont = GoogleFonts.play(
     color: mainColor, fontWeight: FontWeight.bold, fontSize: 50);
 final TextStyle mainFont = GoogleFonts.raleway();
 
-class LoginView extends StatefulWidget {
+class RegisterView extends StatefulWidget {
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<RegisterView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewState extends State<RegisterView> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -30,10 +30,9 @@ class _LoginViewState extends State<LoginView> {
       body: SafeArea(
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text('MyScrum', style: titleFont),
+            Text('Registro', style: titleFont),
             const SizedBox(height: 10),
-            Text('Organizate junto a tus proyectos',
-                style: mainFont.copyWith(fontSize: 15)),
+            Text('Ingresa tus datos', style: mainFont.copyWith(fontSize: 15)),
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -85,7 +84,7 @@ class _LoginViewState extends State<LoginView> {
                 decoration: BoxDecoration(
                     color: mainColor, borderRadius: BorderRadius.circular(12)),
                 child: Center(
-                  child: Text('Iniciar Sesión',
+                  child: Text('Registrarme',
                       style: mainFont.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -96,7 +95,7 @@ class _LoginViewState extends State<LoginView> {
             const SizedBox(height: 30),
             TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.registerRoute);
+                  Navigator.of(context).pushNamed(AppRoutes.loginRoute);
                 },
                 child: Text('Registrate',
                     style: mainFont.copyWith(
