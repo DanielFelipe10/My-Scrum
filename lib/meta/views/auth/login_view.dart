@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 const mainColor = Color(0xFF009BFF);
 final TextStyle titleFont = GoogleFonts.play(
-    color: mainColor, fontWeight: FontWeight.bold, fontSize: 50);
+    color: mainColor, fontWeight: FontWeight.bold, fontSize: 45);
 final TextStyle mainFont = GoogleFonts.raleway();
 
 class LoginView extends StatefulWidget {
@@ -30,21 +30,19 @@ class _LoginViewState extends State<LoginView> {
     final AuthenticationNotifier authenticationNotifier =
         Provider.of<AuthenticationNotifier>(context, listen: false);
     return Scaffold(
-      backgroundColor: Colors.grey[300],
       body: SafeArea(
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text('MyScrum', style: titleFont),
             const SizedBox(height: 10),
             Text('Organizate junto a tus proyectos',
-                style: mainFont.copyWith(fontSize: 15)),
+                style: mainFont.copyWith(fontSize: 13)),
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.grey[200],
-                    border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(12)),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20.0),
@@ -117,9 +115,16 @@ class _LoginViewState extends State<LoginView> {
                 onPressed: () {
                   Navigator.of(context).pushNamed(AppRoutes.registerRoute);
                 },
-                child: Text('Registrate',
-                    style: mainFont.copyWith(
-                        color: mainColor, fontWeight: FontWeight.bold)))
+                child: RichText(
+                    text: const TextSpan(
+                        text: '¿No tienes una cuenta? ',
+                        style: TextStyle(),
+                        children: <TextSpan>[
+                      TextSpan(
+                          text: 'Registrate',
+                          style: TextStyle(
+                              color: mainColor, fontWeight: FontWeight.bold))
+                    ])))
           ]),
         ),
       ),

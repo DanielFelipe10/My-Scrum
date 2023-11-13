@@ -11,9 +11,9 @@ class AuthenticationService {
         await SupabaseCredentials.supabaseClient.auth.signUp(email, password);
 
     if (response.error == null) {
-      String? userEmail = response.data!.user!.email;
+      String? userID = response.data!.user!.id;
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Registro exitoso')));
+          .showSnackBar(SnackBar(content: Text('Registro exitoso : $userID')));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text('Registro invalido ${response.error!.message}')));

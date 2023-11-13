@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 const mainColor = Color(0xFF009BFF);
 final TextStyle titleFont = GoogleFonts.play(
-    color: mainColor, fontWeight: FontWeight.bold, fontSize: 50);
+    color: mainColor, fontWeight: FontWeight.bold, fontSize: 30);
 final TextStyle mainFont = GoogleFonts.raleway();
 
 class RegisterView extends StatefulWidget {
@@ -30,11 +30,10 @@ class _LoginViewState extends State<RegisterView> {
     final AuthenticationNotifier authenticationNotifier =
         Provider.of<AuthenticationNotifier>(context, listen: false);
     return Scaffold(
-      backgroundColor: Colors.grey[300],
       body: SafeArea(
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text('Registro', style: titleFont),
+            Text('REGISTRO', style: titleFont),
             const SizedBox(height: 10),
             Text('Ingresa tus datos', style: mainFont.copyWith(fontSize: 15)),
             const SizedBox(height: 30),
@@ -43,7 +42,6 @@ class _LoginViewState extends State<RegisterView> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.grey[200],
-                    border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(12)),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20.0),
@@ -116,9 +114,16 @@ class _LoginViewState extends State<RegisterView> {
                 onPressed: () {
                   Navigator.of(context).pushNamed(AppRoutes.loginRoute);
                 },
-                child: Text('Registrate',
-                    style: mainFont.copyWith(
-                        color: mainColor, fontWeight: FontWeight.bold)))
+                child: RichText(
+                    text: const TextSpan(
+                        text: '¿Ya tienes una cuenta? ',
+                        style: TextStyle(),
+                        children: <TextSpan>[
+                      TextSpan(
+                          text: 'Inicia sesión',
+                          style: TextStyle(
+                              color: mainColor, fontWeight: FontWeight.bold))
+                    ])))
           ]),
         ),
       ),
