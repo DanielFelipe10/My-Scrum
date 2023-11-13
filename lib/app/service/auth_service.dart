@@ -1,22 +1,29 @@
+import 'package:flutter/material.dart';
 import 'package:my_scrum/app/credentials/supabase_credentials.dart';
 import 'package:supabase/supabase.dart';
 
 class AuthenticationService {
   Future<String?> signUp(
-      {required String email, required String password}) async {
+      {required BuildContext context,
+      required String email,
+      required String password}) async {
     GotrueSessionResponse response =
         await SupabaseCredentials.supabaseClient.auth.signUp(email, password);
 
     if (response.error == null) {
       String? userEmail = response.data!.user!.email;
-      print("Registro exitoso $userEmail");
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Registro exitoso')));
     } else {
-      print("Registro invalido ${response.error!.message}");
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Registro invalido ${response.error!.message}')));
     }
   }
 
   Future<String?> login(
-      {required String email, required String password}) async {
+      {required BuildContext context,
+      required String email,
+      required String password}) async {
     GotrueSessionResponse response =
         await SupabaseCredentials.supabaseClient.auth.signIn(
             email: email,
@@ -25,9 +32,11 @@ class AuthenticationService {
 
     if (response.error == null) {
       String? userEmail = response.data!.user!.email;
-      print("Ingreso exitoso $userEmail");
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Bienvenido')));
     } else {
-      print("Ingreso invalido ${response.error!.message}");
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Datos erroneos${response.error!.message}')));
     }
   }
 }

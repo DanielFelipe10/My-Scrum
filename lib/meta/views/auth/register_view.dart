@@ -90,7 +90,7 @@ class _LoginViewState extends State<RegisterView> {
 
                   if (email.isNotEmpty && password.isNotEmpty) {
                     authenticationNotifier.signUp(
-                        email: email, password: password);
+                        context: context, email: email, password: password);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Complete los datos')));

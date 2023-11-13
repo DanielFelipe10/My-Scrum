@@ -91,7 +91,7 @@ class _LoginViewState extends State<LoginView> {
 
                   if (email.isNotEmpty && password.isNotEmpty) {
                     authenticationNotifier.login(
-                        email: email, password: password);
+                        context: context, email: email, password: password);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Complete los datos')));

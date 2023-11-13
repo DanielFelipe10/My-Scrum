@@ -6,18 +6,24 @@ class AuthenticationNotifier extends ChangeNotifier {
       new AuthenticationService();
 
   Future<String?> signUp(
-      {required String email, required String password}) async {
+      {required BuildContext context,
+      required String email,
+      required String password}) async {
     try {
-      await authenticationService.signUp(email: email, password: password);
+      await authenticationService.signUp(
+          context: context, email: email, password: password);
     } catch (e) {
       print(e);
     }
   }
 
   Future<String?> login(
-      {required String email, required String password}) async {
+      {required BuildContext context,
+      required String email,
+      required String password}) async {
     try {
-      await authenticationService.login(email: email, password: password);
+      await authenticationService.login(
+          context: context, email: email, password: password);
     } catch (e) {
       print(e);
     }
