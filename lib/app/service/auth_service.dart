@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_scrum/app/credentials/supabase_credentials.dart';
+import 'package:my_scrum/app/routes/app_routes.dart';
 import 'package:my_scrum/meta/views/auth/register_view.dart';
 import 'package:supabase/supabase.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class AuthenticationService {
@@ -49,6 +49,7 @@ class AuthenticationService {
       String? userEmail = response.data!.user!.email;
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Bienvenido')));
+      Navigator.of(context).pushNamed(AppRoutes.principalRoute);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(

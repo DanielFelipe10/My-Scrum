@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:my_scrum/meta/views/auth/login_view.dart';
 import 'package:my_scrum/meta/views/auth/principal.dart';
 import 'package:my_scrum/meta/views/auth/register_view.dart';
