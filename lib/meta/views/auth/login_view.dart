@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/bi.dart';
 import 'package:my_scrum/app/routes/app_routes.dart';
 import 'package:my_scrum/core/notifier/auth_notifier.dart';
 import 'package:provider/provider.dart';
@@ -116,14 +118,20 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             const SizedBox(height: 30),
-            ElevatedButton(
-                onPressed: () {
+            Container(
+              height: 50,
+              width: 50,
+              decoration:
+                  BoxDecoration(color: Colors.black, shape: BoxShape.circle),
+              child: InkWell(
+                onTap: () {
                   authenticationNotifier.loginGithub(context: context);
                 },
-                child: Text(
-                  'Github',
-                  style: mainFont,
-                )),
+                child: const Center(
+                  child: Iconify(Bi.github, color: Colors.white),
+                ),
+              ),
+            ),
             const SizedBox(height: 30),
             TextButton(
                 onPressed: () {
