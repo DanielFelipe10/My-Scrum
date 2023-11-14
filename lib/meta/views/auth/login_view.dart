@@ -117,10 +117,15 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
+            Text(
+              'O ingresa con',
+              style: mainFont.copyWith(color: Colors.grey[600]),
+            ),
+            const SizedBox(height: 20),
             Container(
-              height: 50,
-              width: 50,
+              height: 55,
+              width: 55,
               decoration:
                   BoxDecoration(color: Colors.black, shape: BoxShape.circle),
               child: InkWell(
@@ -128,7 +133,11 @@ class _LoginViewState extends State<LoginView> {
                   authenticationNotifier.loginGithub(context: context);
                 },
                 child: const Center(
-                  child: Iconify(Bi.github, color: Colors.white),
+                  child: Iconify(
+                    Bi.github,
+                    color: Colors.white,
+                    size: 30,
+                  ),
                 ),
               ),
             ),
