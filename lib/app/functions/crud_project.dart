@@ -9,15 +9,21 @@ class CrudProject {
   }
 
   //Read projects
-  readProject() async {
-    var response = await SupabaseCredentials.supabaseClient
-        .from('Projects')
-        .select()
-        .order('name', ascending: true)
-        .execute();
-    print(response);
-    final dataList = response.data as List;
-    return dataList;
+  Future<List<Map<String, dynamic>>> readProject() async {
+    try {
+      var response = await SupabaseCredentials.supabaseClient
+          .from('Projects')
+          .select()
+          .order('name', ascending: true)
+          .execute();
+      print(response);
+
+      final dataList = response.data as List<Map<String, dynamic>>;
+      return dataList;
+    } catch (error) {
+      print('Error reading projects: $error');
+      return [];
+    }
   }
 
   //Update project
