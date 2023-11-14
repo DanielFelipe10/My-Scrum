@@ -116,6 +116,15 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             const SizedBox(height: 30),
+            ElevatedButton(
+                onPressed: () {
+                  authenticationNotifier.loginGithub(context: context);
+                },
+                child: Text(
+                  'Github',
+                  style: mainFont,
+                )),
+            const SizedBox(height: 30),
             TextButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed(AppRoutes.registerRoute);

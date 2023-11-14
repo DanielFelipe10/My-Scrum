@@ -28,4 +28,14 @@ class AuthenticationNotifier extends ChangeNotifier {
       print(e);
     }
   }
+
+  Future loginGithub({required BuildContext context}) async {
+    try {
+      await authenticationService.loginGithub(
+        context: context,
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
 }
