@@ -11,7 +11,8 @@ class PrincipalView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      debugShowCheckedModeBanner: false,
+      title: 'MyScrum',
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Material App Bar'),
@@ -21,25 +22,39 @@ class PrincipalView extends StatelessWidget {
           child: Stack(
             children: [
               Positioned(
-                bottom: 20,
-                right: 20,
+                bottom: 25,
+                right: 25,
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return SizedBox(
+                            height: 600,
+                            child: ElevatedButton(
+                              child: Text('Close'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          );
+                        });
+                  },
                   label: Text(
                     'Crear proyecto',
                     style: mainFont.copyWith(
                         fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.edit,
                     color: Colors.white,
                     size: 18,
                   ),
                   style: ElevatedButton.styleFrom(
-                      minimumSize: Size(200, 60),
+                      minimumSize: const Size(200, 60),
                       backgroundColor: mainColor,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                          borderRadius: BorderRadius.circular(15))),
                 ),
               ),
             ],
