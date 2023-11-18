@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 const mainColor = Color(0xFF009BFF);
 final TextStyle mainFont = GoogleFonts.raleway();
+final TextStyle titleFont = GoogleFonts.play(
+    color: mainColor, fontWeight: FontWeight.bold, fontSize: 50);
 void main() => runApp(const PrincipalView());
 
 class PrincipalView extends StatelessWidget {
@@ -15,7 +17,9 @@ class PrincipalView extends StatelessWidget {
       title: 'MyScrum',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Material App Bar'),
+          backgroundColor: Colors.white,
+          title: const Center(child: Text('MyScrum')),
+          titleTextStyle: titleFont.copyWith(fontSize: 20),
         ),
         body: Container(
           alignment: Alignment.center,
@@ -29,13 +33,10 @@ class PrincipalView extends StatelessWidget {
                     showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) {
-                          return SizedBox(
+                          return const SizedBox(
                             height: 600,
-                            child: ElevatedButton(
-                              child: Text('Close'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
+                            child: Column(
+                              children: [],
                             ),
                           );
                         });

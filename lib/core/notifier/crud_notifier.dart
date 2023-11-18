@@ -11,9 +11,9 @@ class CrudNotifier extends ChangeNotifier {
 
   Future<PostgrestResponse?> addProject(
       {required String name,
-      required String categorie,
+      required String category,
       required bool status}) async {
     await _crudService.addProject(
-        name: name, categorie: categorie, status: status);
+        name: name, categorie: category, status: status);
   }
 }

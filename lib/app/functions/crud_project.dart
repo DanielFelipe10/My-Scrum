@@ -2,9 +2,9 @@ import 'package:my_scrum/app/credentials/supabase_credentials.dart';
 
 class CrudProject {
   //Add proyect
-  addProject(String name, String categorie, bool status) {
+  addProject(String name, String category, bool status) {
     var response = SupabaseCredentials.supabaseClient.from('Projects').insert(
-        {'name': name, 'categorie': categorie, 'status': status}).execute();
+        {'name': name, 'category': category, 'status': status}).execute();
     print(response);
   }
 
