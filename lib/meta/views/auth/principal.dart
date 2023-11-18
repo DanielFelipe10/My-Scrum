@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_scrum/meta/views/auth/custom_textfield.dart';
 
 const mainColor = Color(0xFF009BFF);
 final TextStyle mainFont = GoogleFonts.raleway();
 final TextStyle titleFont = GoogleFonts.play(
     color: mainColor, fontWeight: FontWeight.bold, fontSize: 50);
-void main() => runApp(const PrincipalView());
+void main() => runApp(PrincipalView());
 
 class PrincipalView extends StatelessWidget {
-  const PrincipalView({super.key});
+  PrincipalView({super.key});
+
+  final nameController = TextEditingController();
+  final categoryController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +37,34 @@ class PrincipalView extends StatelessWidget {
                     showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) {
-                          return const SizedBox(
+                          return SizedBox(
                             height: 600,
                             child: Column(
-                              children: [],
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(
+                                    children: [
+                                      CustomTextField(
+                                        controller: nameController,
+                                        name: "Nombre de tu proyecto",
+                                        prefixIcon: Icons.edit,
+                                        textInputType: TextInputType.name,
+                                        textCapitalization:
+                                            TextCapitalization.words,
+                                      ),
+                                      CustomTextField(
+                                        controller: categoryController,
+                                        name: "Define una categoria",
+                                        prefixIcon: Icons.category,
+                                        textInputType: TextInputType.name,
+                                        textCapitalization:
+                                            TextCapitalization.words,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           );
                         });

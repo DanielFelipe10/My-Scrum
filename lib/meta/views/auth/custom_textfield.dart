@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const mainColor = Color(0xFF009BFF);
+final TextStyle mainFont = GoogleFonts.raleway();
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -22,7 +24,8 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 15),
+      color: Colors.grey[100],
+      margin: const EdgeInsets.only(bottom: 18),
       child: TextField(
         enabled: true,
         controller: controller,
@@ -32,7 +35,7 @@ class CustomTextField extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: textInputType,
         textAlign: TextAlign.start,
-        style: const TextStyle(color: Colors.black, fontSize: 16),
+        style: mainFont.copyWith(color: Colors.black, fontSize: 15),
         decoration: InputDecoration(
           prefixIcon: Icon(prefixIcon),
           isDense: true,
@@ -40,14 +43,14 @@ class CustomTextField extends StatelessWidget {
           counterText: "",
           labelStyle: const TextStyle(color: Colors.grey),
           border: const OutlineInputBorder(
-              borderSide: BorderSide(color: mainColor),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+              borderSide: BorderSide(color: Colors.grey),
+              borderRadius: BorderRadius.all(Radius.circular(5))),
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: mainColor),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+              borderRadius: BorderRadius.all(Radius.circular(5))),
           enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: mainColor),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+              borderSide: BorderSide(color: Colors.grey),
+              borderRadius: BorderRadius.all(Radius.circular(5))),
         ),
       ),
     );
