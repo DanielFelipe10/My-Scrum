@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+const mainColor = Color(0xFF009BFF);
+final TextStyle mainFont = GoogleFonts.raleway();
 void main() => runApp(const PrincipalView());
 
 class PrincipalView extends StatelessWidget {
@@ -18,15 +21,26 @@ class PrincipalView extends StatelessWidget {
           child: Stack(
             children: [
               Positioned(
-                bottom: 10,
-                right: 10,
+                bottom: 20,
+                right: 20,
                 child: ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.edit,
-                      color: Colors.white,
-                    ),
-                    label: Text('Crear proyecto')),
+                  onPressed: () {},
+                  label: Text(
+                    'Crear proyecto',
+                    style: mainFont.copyWith(
+                        fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  icon: Icon(
+                    Icons.edit,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: Size(200, 60),
+                      backgroundColor: mainColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10))),
+                ),
               ),
             ],
           ),
