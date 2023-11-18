@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 const mainColor = Color(0xFF009BFF);
 final TextStyle titleFont = GoogleFonts.play(
-    color: mainColor, fontWeight: FontWeight.bold, fontSize: 35);
+    color: mainColor, fontWeight: FontWeight.bold, fontSize: 3);
 final TextStyle mainFont = GoogleFonts.raleway();
 
 class RegisterView extends StatefulWidget {

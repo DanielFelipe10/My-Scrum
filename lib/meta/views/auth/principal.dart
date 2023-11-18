@@ -7,14 +7,31 @@ class PrincipalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [],
-      )),
+    return MaterialApp(
+      title: 'Material App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Material App Bar'),
+        ),
+        body: Container(
+          alignment: Alignment.center,
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: 10,
+                right: 10,
+                child: ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.edit,
+                      color: Colors.white,
+                    ),
+                    label: Text('Crear proyecto')),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
