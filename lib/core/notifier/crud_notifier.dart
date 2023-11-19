@@ -14,6 +14,6 @@ class CrudNotifier extends ChangeNotifier {
       required String category,
       required bool status}) async {
     await _crudService.addProject(
-        name: name, categorie: category, status: status);
+        name: name, category: category, status: status);
   }
 }

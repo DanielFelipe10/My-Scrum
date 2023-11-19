@@ -18,16 +18,13 @@ class CrudService {
   //Create project
   Future<PostgrestResponse?> addProject(
       {required String name,
-      required String categorie,
+      required String category,
       required bool status}) async {
     try {
       PostgrestResponse? response = await SupabaseCredentials.supabaseClient
           .from('Projects')
-          .insert({
-        'name': name,
-        'categorie': categorie,
-        'status': status
-      }).execute();
+          .insert(
+              {'name': name, 'category': category, 'status': status}).execute();
       if (response.data != null) {
         print(response.data);
       } else {

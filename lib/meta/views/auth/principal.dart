@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_scrum/core/notifier/crud_notifier.dart';
 import 'package:my_scrum/meta/views/auth/custom_textfield.dart';
+import 'package:provider/provider.dart';
 
 const mainColor = Color(0xFF009BFF);
 final TextStyle mainFont = GoogleFonts.raleway();
@@ -16,6 +18,8 @@ class PrincipalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CrudNotifier crudNotifier =
+        Provider.of<CrudNotifier>(context, listen: false);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MyScrum',
@@ -61,6 +65,15 @@ class PrincipalView extends StatelessWidget {
                                         textCapitalization:
                                             TextCapitalization.words,
                                       ),
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            crudNotifier.addProject(
+                                                name: nameController.text,
+                                                category:
+                                                    categoryController.text,
+                                                status: true);
+                                          },
+                                          child: const Text('Crear'))
                                     ],
                                   ),
                                 ),

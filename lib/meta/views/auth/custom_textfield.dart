@@ -43,13 +43,13 @@ class CustomTextField extends StatelessWidget {
           counterText: "",
           labelStyle: const TextStyle(color: Colors.grey),
           border: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey),
+              borderSide: BorderSide(color: Colors.black12),
               borderRadius: BorderRadius.all(Radius.circular(5))),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: mainColor),
+              borderSide: BorderSide(color: mainColor, width: 2),
               borderRadius: BorderRadius.all(Radius.circular(5))),
           enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey),
+              borderSide: BorderSide(color: Colors.black12, width: 2),
               borderRadius: BorderRadius.all(Radius.circular(5))),
         ),
       ),
