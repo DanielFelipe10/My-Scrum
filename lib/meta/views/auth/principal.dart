@@ -31,6 +31,7 @@ class PrincipalView extends StatelessWidget {
           titleTextStyle: titleFont.copyWith(fontSize: 20),
         ),
         body: Container(
+          color: Colors.grey[100],
           height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
           child: Stack(
@@ -41,23 +42,31 @@ class PrincipalView extends StatelessWidget {
                     future: crudNotifier.fetchProject(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator();
+                        return const Center(child: CircularProgressIndicator());
                       }
                       if (snapshot.hasData) {
                         List snapshotL = snapshot.data as List;
                         return ListView.builder(
+                            padding: const EdgeInsets.all(5),
                             shrinkWrap: true,
                             itemCount: snapshotL.length,
                             itemBuilder: ((context, index) {
                               Projects project = snapshotL[index];
-                              return ListTile(
-                                title: Text(project.name),
-                                subtitle:
-                                    Text('Categoria: ${project.category}'),
-                              );
+                              return Card(
+                                  child: ListTile(
+                                      title: Text(project.name),
+                                      subtitle: Text(
+                                          'Categoria: ${project.category}'),
+                                      trailing: const Icon(
+                                          Icons.keyboard_arrow_right),
+                                      leading: project.status
+                                          ? const Icon(Icons.adjust,
+                                              color: mainColor)
+                                          : const Icon(Icons.adjust,
+                                              color: Colors.grey)));
                             }));
                       }
-                      return const CircularProgressIndicator();
+                      return const Center(child: CircularProgressIndicator());
                     }),
               ),
               Positioned(
