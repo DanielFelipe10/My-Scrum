@@ -25,9 +25,6 @@ class PrincipalView extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'MyScrum',
       home: Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          crudNotifier.fetchProject();
-        }),
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Center(child: Text('MyScrum')),
@@ -103,25 +100,29 @@ class PrincipalView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15))),
                 ),
               ),
-              /* FutureBuilder(
-                  future: CrudNotifier().fetchProject(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
+              SizedBox(
+                height: 400,
+                child: FutureBuilder(
+                    future: CrudNotifier().fetchProject(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      }
+                      if (snapshot.hasData) {
+                        List snapshotL = snapshot.data as List;
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshotL.length,
+                            itemBuilder: ((context, index) {
+                              Projects project = snapshotL[index];
+                              return ListTile(
+                                title: Text(project.name),
+                              );
+                            }));
+                      }
                       return const CircularProgressIndicator();
-                    }
-                    if (snapshot.hasData) {
-                      List snapshotL = snapshot.data as List;
-                      return ListView.builder(
-                          shrinkWrap: true,
-                          itemBuilder: ((context, index) {
-                            Projects project = snapshotL[index];
-                            return ListTile(
-                              title: Text(project.name),
-                            );
-                          }));
-                    }
-                    return const CircularProgressIndicator();
-                  })*/
+                    }),
+              )
             ],
           ),
         ),

@@ -8,10 +8,11 @@ import 'package:supabase/supabase.dart';
 class CrudNotifier extends ChangeNotifier {
   final CrudService _crudService = CrudService();
 
-  Future<Projects?> fetchProject() async {
-    var data = await _crudService.fetchProject();
-    Projects modelledData = Projects.fromJson(data);
-    return modelledData;
+  Future fetchProject() async {
+    List data = await _crudService.fetchProject();
+    return data
+        .map((projectElement) => Projects.fromJson(projectElement))
+        .toList();
   }
 
   Future<PostgrestResponse?> addProject(
