@@ -31,9 +31,35 @@ class PrincipalView extends StatelessWidget {
           titleTextStyle: titleFont.copyWith(fontSize: 20),
         ),
         body: Container(
+          height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
           child: Stack(
             children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: FutureBuilder(
+                    future: crudNotifier.fetchProject(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      }
+                      if (snapshot.hasData) {
+                        List snapshotL = snapshot.data as List;
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshotL.length,
+                            itemBuilder: ((context, index) {
+                              Projects project = snapshotL[index];
+                              return ListTile(
+                                title: Text(project.name),
+                                subtitle:
+                                    Text('Categoria: ${project.category}'),
+                              );
+                            }));
+                      }
+                      return const CircularProgressIndicator();
+                    }),
+              ),
               Positioned(
                 bottom: 25,
                 right: 25,
@@ -43,7 +69,7 @@ class PrincipalView extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return SizedBox(
-                            height: 600,
+                            height: 500,
                             child: Column(
                               children: [
                                 Container(
@@ -73,6 +99,7 @@ class PrincipalView extends StatelessWidget {
                                                 category:
                                                     categoryController.text,
                                                 status: true);
+                                            crudNotifier.fetchProject();
                                           },
                                           child: const Text('Crear'))
                                     ],
@@ -86,7 +113,7 @@ class PrincipalView extends StatelessWidget {
                   label: Text(
                     'Crear proyecto',
                     style: mainFont.copyWith(
-                        fontWeight: FontWeight.bold, fontSize: 16),
+                        fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   icon: const Icon(
                     Icons.edit,
@@ -94,35 +121,12 @@ class PrincipalView extends StatelessWidget {
                     size: 18,
                   ),
                   style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(200, 60),
+                      minimumSize: const Size(120, 45),
                       backgroundColor: mainColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15))),
                 ),
               ),
-              SizedBox(
-                height: 400,
-                child: FutureBuilder(
-                    future: CrudNotifier().fetchProject(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator();
-                      }
-                      if (snapshot.hasData) {
-                        List snapshotL = snapshot.data as List;
-                        return ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: snapshotL.length,
-                            itemBuilder: ((context, index) {
-                              Projects project = snapshotL[index];
-                              return ListTile(
-                                title: Text(project.name),
-                              );
-                            }));
-                      }
-                      return const CircularProgressIndicator();
-                    }),
-              )
             ],
           ),
         ),
