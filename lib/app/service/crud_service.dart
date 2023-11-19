@@ -9,7 +9,8 @@ class CrudService {
           .from('Projects')
           .select()
           .execute();
-      print(response.data);
+      var data = response.data;
+      return data;
     } catch (e) {
       print(e.toString());
     }
@@ -26,7 +27,8 @@ class CrudService {
           .insert(
               {'name': name, 'category': category, 'status': status}).execute();
       if (response.data != null) {
-        print(response.data);
+        var data = response.data;
+        return data;
       } else {
         print(response.error);
       }

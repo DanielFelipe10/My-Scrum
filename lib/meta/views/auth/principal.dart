@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_scrum/core/models/projects_model.dart';
 import 'package:my_scrum/core/notifier/crud_notifier.dart';
 import 'package:my_scrum/meta/views/auth/custom_textfield.dart';
 import 'package:provider/provider.dart';
@@ -102,6 +103,25 @@ class PrincipalView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15))),
                 ),
               ),
+              /* FutureBuilder(
+                  future: CrudNotifier().fetchProject(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    }
+                    if (snapshot.hasData) {
+                      List snapshotL = snapshot.data as List;
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          itemBuilder: ((context, index) {
+                            Projects project = snapshotL[index];
+                            return ListTile(
+                              title: Text(project.name),
+                            );
+                          }));
+                    }
+                    return const CircularProgressIndicator();
+                  })*/
             ],
           ),
         ),
