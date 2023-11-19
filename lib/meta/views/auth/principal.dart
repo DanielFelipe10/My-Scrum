@@ -24,6 +24,9 @@ class PrincipalView extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'MyScrum',
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          crudNotifier.fetchProject();
+        }),
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Center(child: Text('MyScrum')),
