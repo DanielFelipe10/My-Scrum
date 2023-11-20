@@ -60,45 +60,61 @@ class _PrincipalViewState extends State<PrincipalView> {
                           showChildOpacityTransition: false,
                           child: Column(
                             children: [
-                              const Row(
-                                children: [
-                                  Card(
-                                    elevation: 20,
-                                    color: Colors.black,
-                                    child: Padding(
-                                      padding: EdgeInsets.all(10),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          SizedBox(height: 8),
-                                          Text(
-                                            'Hola',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          )
-                                        ],
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Row(
+                                  children: [
+                                    Card(
+                                      elevation: 20,
+                                      color: mainColor,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            const SizedBox(height: 8),
+                                            Text(
+                                              'Proyectos totales',
+                                              style: mainFont.copyWith(
+                                                  color: Colors.white),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  snapshotL.length.toString(),
+                                                  style: titleFont.copyWith(
+                                                      color: Colors.white,
+                                                      fontSize: 20),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Card(
-                                    elevation: 20,
-                                    color: Colors.black,
-                                    child: Padding(
-                                      padding: EdgeInsets.all(10),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          SizedBox(height: 8),
-                                          Text(
-                                            'Hola',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          )
-                                        ],
+                                    const Card(
+                                      elevation: 20,
+                                      color: Colors.grey,
+                                      child: Padding(
+                                        padding: EdgeInsets.all(10),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            SizedBox(height: 8),
+                                            Text(
+                                              'Hola',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  )
-                                ],
+                                    )
+                                  ],
+                                ),
                               ),
                               ListView.builder(
                                   padding: const EdgeInsets.all(5),
@@ -174,7 +190,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                                                 category:
                                                     categoryController.text,
                                                 status: true);
-                                            crudNotifier.fetchProject();
+                                            Navigator.pop(context);
                                           },
                                           child: const Text('Crear'))
                                     ],
