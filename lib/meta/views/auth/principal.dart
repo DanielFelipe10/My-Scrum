@@ -58,34 +58,78 @@ class _PrincipalViewState extends State<PrincipalView> {
                           color: Colors.blue,
                           backgroundColor: Colors.white,
                           showChildOpacityTransition: false,
-                          child: ListView.builder(
-                              padding: const EdgeInsets.all(5),
-                              shrinkWrap: true,
-                              itemCount: snapshotL.length,
-                              itemBuilder: ((context, index) {
-                                Projects project = snapshotL[index];
-                                return Card(
-                                    child: ListTile(
-                                  dense: true,
-                                  title: Text(
-                                    project.name,
-                                    style: mainFont.copyWith(
-                                        fontWeight: FontWeight.bold),
+                          child: Column(
+                            children: [
+                              const Row(
+                                children: [
+                                  Card(
+                                    elevation: 20,
+                                    color: Colors.black,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          SizedBox(height: 8),
+                                          Text(
+                                            'Hola',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          )
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  subtitle: Text(project.category),
-                                  trailing: project.status
-                                      ? const Icon(Icons.adjust,
-                                          color: mainColor, size: 16)
-                                      : const Icon(
-                                          Icons.adjust,
-                                          color: Colors.grey,
-                                          size: 16,
-                                        ),
-                                  onTap: () {
-                                    print(snapshotL.length);
-                                  },
-                                ));
-                              })),
+                                  Card(
+                                    elevation: 20,
+                                    color: Colors.black,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          SizedBox(height: 8),
+                                          Text(
+                                            'Hola',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              ListView.builder(
+                                  padding: const EdgeInsets.all(5),
+                                  shrinkWrap: true,
+                                  itemCount: snapshotL.length,
+                                  itemBuilder: ((context, index) {
+                                    Projects project = snapshotL[index];
+                                    return Card(
+                                        child: ListTile(
+                                      dense: true,
+                                      title: Text(
+                                        project.name,
+                                        style: mainFont.copyWith(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      subtitle: Text(project.category),
+                                      trailing: project.status
+                                          ? const Icon(Icons.adjust,
+                                              color: mainColor, size: 16)
+                                          : const Icon(
+                                              Icons.adjust,
+                                              color: Colors.grey,
+                                              size: 16,
+                                            ),
+                                      onTap: () {
+                                        print(snapshotL.length);
+                                      },
+                                    ));
+                                  })),
+                            ],
+                          ),
                         );
                       }
                       return const Center(child: CircularProgressIndicator());
