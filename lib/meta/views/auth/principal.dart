@@ -6,6 +6,8 @@ import 'package:my_scrum/core/notifier/crud_notifier.dart';
 import 'package:my_scrum/meta/views/auth/custom_textfield.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app/routes/app_routes.dart';
+
 const mainColor = Color(0xFF009BFF);
 final TextStyle mainFont = GoogleFonts.raleway();
 final TextStyle titleFont = GoogleFonts.play(
@@ -141,7 +143,17 @@ class _PrincipalViewState extends State<PrincipalView> {
                                               size: 16,
                                             ),
                                       onTap: () {
-                                        print(snapshotL.length);
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AppRoutes.taskRoute(
+                                                      nameProject: project.name,
+                                                      categoryProject:
+                                                          project.category,
+                                                      statusProject:
+                                                          project.status),
+                                            ));
                                       },
                                     ));
                                   })),

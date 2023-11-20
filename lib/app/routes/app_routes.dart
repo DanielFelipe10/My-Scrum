@@ -10,6 +10,6 @@ class AppRoutes {
   static final routes = {
     loginRoute: (context) => LoginView(),
     registerRoute: (context) => RegisterView(),
-    principalRoute: (context) => PrincipalView()
+    principalRoute: (context) => PrincipalView(),
   };
 }
