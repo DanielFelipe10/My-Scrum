@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
+const String projectName = 'Mi proyecto';
+const String projectCategory = 'Categoria';
+
 void main() => runApp(const TaskView(
-      nameProject: 'Mi proyecto',
-      categoryProject: 'Categoria',
+      nameProject: projectName,
+      categoryProject: projectCategory,
       statusProject: true,
     ));
 
 class TaskView extends StatelessWidget {
   final String nameProject;
   final String categoryProject;
-  final bool? statusProject;
+  final bool statusProject;
 
   const TaskView({
     required this.nameProject,
@@ -21,14 +24,13 @@ class TaskView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Material App Bar'),
+          title: Text(nameProject),
         ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
+        body: Center(child: Text(categoryProject)),
       ),
     );
   }

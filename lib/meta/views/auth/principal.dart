@@ -4,6 +4,7 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:my_scrum/core/models/projects_model.dart';
 import 'package:my_scrum/core/notifier/crud_notifier.dart';
 import 'package:my_scrum/meta/views/auth/custom_textfield.dart';
+import 'package:my_scrum/meta/views/auth/tasks.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/routes/app_routes.dart';
@@ -146,13 +147,12 @@ class _PrincipalViewState extends State<PrincipalView> {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AppRoutes.taskRoute(
-                                                      nameProject: project.name,
-                                                      categoryProject:
-                                                          project.category,
-                                                      statusProject:
-                                                          project.status),
+                                              builder: (context) => TaskView(
+                                                  nameProject: project.name,
+                                                  categoryProject:
+                                                      project.category,
+                                                  statusProject:
+                                                      project.status),
                                             ));
                                       },
                                     ));
