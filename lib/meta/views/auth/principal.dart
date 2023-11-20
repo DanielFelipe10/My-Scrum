@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:my_scrum/core/models/projects_model.dart';
 import 'package:my_scrum/core/notifier/crud_notifier.dart';
 import 'package:my_scrum/meta/views/auth/custom_textfield.dart';
@@ -51,12 +52,14 @@ class _PrincipalViewState extends State<PrincipalView> {
                       }
                       if (snapshot.hasData) {
                         List snapshotL = snapshot.data as List;
-                        return RefreshIndicator(
+                        return LiquidPullToRefresh(
                           onRefresh: () async {
                             await Future.delayed(const Duration(seconds: 1));
                             crudNotifier.fetchProject();
                             setState(() {});
                           },
+                          color: Colors.grey[100],
+                          backgroundColor: mainColor,
                           child: ListView.builder(
                               padding: const EdgeInsets.all(5),
                               shrinkWrap: true,
