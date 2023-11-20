@@ -9,13 +9,18 @@ const mainColor = Color(0xFF009BFF);
 final TextStyle mainFont = GoogleFonts.raleway();
 final TextStyle titleFont = GoogleFonts.play(
     color: mainColor, fontWeight: FontWeight.bold, fontSize: 50);
-void main() => runApp(PrincipalView());
+void main() => runApp(const PrincipalView());
 
-class PrincipalView extends StatelessWidget {
-  PrincipalView({super.key});
+class PrincipalView extends StatefulWidget {
+  const PrincipalView({Key? key}) : super(key: key);
 
-  final nameController = TextEditingController();
-  final categoryController = TextEditingController();
+  @override
+  _PrincipalViewState createState() => _PrincipalViewState();
+}
+
+class _PrincipalViewState extends State<PrincipalView> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController categoryController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,25 +51,41 @@ class PrincipalView extends StatelessWidget {
                       }
                       if (snapshot.hasData) {
                         List snapshotL = snapshot.data as List;
-                        return ListView.builder(
-                            padding: const EdgeInsets.all(5),
-                            shrinkWrap: true,
-                            itemCount: snapshotL.length,
-                            itemBuilder: ((context, index) {
-                              Projects project = snapshotL[index];
-                              return Card(
-                                  child: ListTile(
-                                      title: Text(project.name),
-                                      subtitle: Text(
-                                          'Categoria: ${project.category}'),
-                                      trailing: const Icon(
-                                          Icons.keyboard_arrow_right),
-                                      leading: project.status
-                                          ? const Icon(Icons.adjust,
-                                              color: mainColor)
-                                          : const Icon(Icons.adjust,
-                                              color: Colors.grey)));
-                            }));
+                        return RefreshIndicator(
+                          onRefresh: () async {
+                            await Future.delayed(const Duration(seconds: 1));
+                            crudNotifier.fetchProject();
+                            setState(() {});
+                          },
+                          child: ListView.builder(
+                              padding: const EdgeInsets.all(5),
+                              shrinkWrap: true,
+                              itemCount: snapshotL.length,
+                              itemBuilder: ((context, index) {
+                                Projects project = snapshotL[index];
+                                return Card(
+                                    child: ListTile(
+                                  dense: true,
+                                  title: Text(
+                                    project.name,
+                                    style: mainFont.copyWith(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  subtitle: Text(project.category),
+                                  trailing: project.status
+                                      ? const Icon(Icons.adjust,
+                                          color: mainColor, size: 16)
+                                      : const Icon(
+                                          Icons.adjust,
+                                          color: Colors.grey,
+                                          size: 16,
+                                        ),
+                                  onTap: () {
+                                    print(snapshotL.length);
+                                  },
+                                ));
+                              })),
+                        );
                       }
                       return const Center(child: CircularProgressIndicator());
                     }),
