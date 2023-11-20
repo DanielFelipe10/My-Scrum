@@ -31,6 +31,7 @@ class _PrincipalViewState extends State<PrincipalView> {
       debugShowCheckedModeBanner: false,
       title: 'MyScrum',
       home: Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Center(child: Text('MyScrum')),
@@ -159,31 +160,47 @@ class _PrincipalViewState extends State<PrincipalView> {
                     showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) {
-                          return SizedBox(
-                            height: 500,
-                            child: Column(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(20),
-                                  child: Column(
-                                    children: [
-                                      CustomTextField(
-                                        controller: nameController,
-                                        name: "Nombre de tu proyecto",
-                                        prefixIcon: Icons.edit,
-                                        textInputType: TextInputType.name,
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                      ),
-                                      CustomTextField(
-                                        controller: categoryController,
-                                        name: "Define una categoria",
-                                        prefixIcon: Icons.category,
-                                        textInputType: TextInputType.name,
-                                        textCapitalization:
-                                            TextCapitalization.words,
-                                      ),
-                                      ElevatedButton(
+                          return SingleChildScrollView(
+                            child: Container(
+                              height: 350,
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(20),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          'Crea tu proyecto',
+                                          style:
+                                              titleFont.copyWith(fontSize: 20),
+                                        ),
+                                        const SizedBox(
+                                          height: 12,
+                                        ),
+                                        CustomTextField(
+                                          controller: nameController,
+                                          name: "Nombre de tu proyecto",
+                                          prefixIcon: Icons.edit,
+                                          textInputType: TextInputType.name,
+                                          textCapitalization:
+                                              TextCapitalization.words,
+                                        ),
+                                        CustomTextField(
+                                          controller: categoryController,
+                                          name: "Define una categoria",
+                                          prefixIcon: Icons.category,
+                                          textInputType: TextInputType.name,
+                                          textCapitalization:
+                                              TextCapitalization.words,
+                                        ),
+                                        ElevatedButton(
                                           onPressed: () {
                                             crudNotifier.addProject(
                                                 name: nameController.text,
@@ -192,11 +209,20 @@ class _PrincipalViewState extends State<PrincipalView> {
                                                 status: true);
                                             Navigator.pop(context);
                                           },
-                                          child: const Text('Crear'))
-                                    ],
+                                          style: ElevatedButton.styleFrom(
+                                              minimumSize: const Size(
+                                                  double.infinity, 50)),
+                                          child: const Text(
+                                            'CREAR',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         });
