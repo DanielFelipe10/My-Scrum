@@ -47,9 +47,6 @@ class _PrincipalViewState extends State<PrincipalView> {
                 child: FutureBuilder(
                     future: crudNotifier.fetchProject(),
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
                       if (snapshot.hasData) {
                         List snapshotL = snapshot.data as List;
                         return LiquidPullToRefresh(
@@ -58,8 +55,9 @@ class _PrincipalViewState extends State<PrincipalView> {
                             crudNotifier.fetchProject();
                             setState(() {});
                           },
-                          color: Colors.grey[100],
-                          backgroundColor: mainColor,
+                          color: Colors.blue,
+                          backgroundColor: Colors.white,
+                          showChildOpacityTransition: false,
                           child: ListView.builder(
                               padding: const EdgeInsets.all(5),
                               shrinkWrap: true,
