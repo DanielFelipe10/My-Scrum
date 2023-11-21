@@ -101,10 +101,13 @@ class _PrincipalViewState extends State<PrincipalView> {
                                                 height: 5,
                                               ),
                                               Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
                                                 children: [
                                                   const Icon(
                                                     Icons.folder_rounded,
                                                     color: Colors.white,
+                                                    size: 20,
                                                   ),
                                                   Text(
                                                     snapshotL.length.toString(),
@@ -133,10 +136,14 @@ class _PrincipalViewState extends State<PrincipalView> {
                                                 height: 5,
                                               ),
                                               Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
                                                 children: [
                                                   const Icon(
                                                     Icons.adjust,
                                                     color: mainColor,
+                                                    size: 20,
                                                   ),
                                                   Text(
                                                     projectsWithTrueStatus
@@ -184,6 +191,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) => TaskView(
+                                                    idProject: project.id,
                                                     nameProject: project.name,
                                                     categoryProject:
                                                         project.category,

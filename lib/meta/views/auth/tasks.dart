@@ -2,14 +2,20 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
+import 'package:my_scrum/app/routes/app_routes.dart';
+import 'package:my_scrum/core/notifier/crud_notifier.dart';
 import 'package:my_scrum/meta/views/auth/principal.dart';
+import 'package:provider/provider.dart';
 
 class TaskView extends StatefulWidget {
+  final int idProject;
   final String nameProject;
   final String categoryProject;
   final bool statusProject;
 
   const TaskView({
+    required this.idProject,
     required this.nameProject,
     required this.categoryProject,
     required this.statusProject,
@@ -32,9 +38,13 @@ class _TaskViewState extends State<TaskView> {
 
   @override
   Widget build(BuildContext context) {
+    int idProject = widget.idProject;
     String nameProject = widget.nameProject;
     String categoryProject = widget.categoryProject;
     bool statusProject = widget.statusProject;
+    final CrudNotifier crudNotifier =
+        Provider.of<CrudNotifier>(context, listen: false);
+    FlutterStatusbarcolor.setStatusBarColor(Colors.white);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -103,7 +113,15 @@ class _TaskViewState extends State<TaskView> {
                         height: 45,
                         width: MediaQuery.of(context).size.width / 2 - 20,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              crudNotifier.deleteProject(id: idProject);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const PrincipalView(),
+                                ),
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red[400],
                             ),
