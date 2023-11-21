@@ -100,41 +100,47 @@ class _TaskViewState extends State<TaskView> {
                               context: context,
                               builder: (context) => AlertDialog(
                                   title: const Text('Crear tarea'),
-                                  content: Column(
-                                    children: [
-                                      CustomTextField(
-                                          controller: nameController,
-                                          name: 'Nombre',
-                                          prefixIcon: Icons.abc,
-                                          textInputType: TextInputType.name),
-                                      CustomTextField(
-                                          controller: descriptionController,
-                                          name: 'Descripción',
-                                          prefixIcon: Icons.description,
-                                          textInputType: TextInputType.name),
-                                      CustomTextField(
-                                          controller: dateIController,
-                                          name: 'Fecha inicio',
-                                          prefixIcon: Icons.date_range_outlined,
-                                          textInputType: TextInputType.text),
-                                      CustomTextField(
-                                          controller: dateFController,
-                                          name: 'Fecha de cierre',
-                                          prefixIcon: Icons.date_range,
-                                          textInputType: TextInputType.text),
-                                      ElevatedButton(
-                                          onPressed: () {
-                                            taskNotifier.addTask(
-                                                name: nameController.text,
-                                                description:
-                                                    descriptionController.text,
-                                                dateS: dateIController.text,
-                                                dateF: dateFController.text,
-                                                state: true,
-                                                idProject: idProject);
-                                          },
-                                          child: const Text('Crear'))
-                                    ],
+                                  content: SizedBox(
+                                    height: 400,
+                                    width: double.infinity,
+                                    child: Column(
+                                      children: [
+                                        CustomTextField(
+                                            controller: nameController,
+                                            name: 'Nombre',
+                                            prefixIcon: Icons.abc,
+                                            textInputType: TextInputType.name),
+                                        CustomTextField(
+                                            controller: descriptionController,
+                                            name: 'Descripción',
+                                            prefixIcon: Icons.description,
+                                            textInputType: TextInputType.name),
+                                        CustomTextField(
+                                            controller: dateIController,
+                                            name: 'Fecha inicio',
+                                            prefixIcon:
+                                                Icons.date_range_outlined,
+                                            textInputType: TextInputType.text),
+                                        CustomTextField(
+                                            controller: dateFController,
+                                            name: 'Fecha de cierre',
+                                            prefixIcon: Icons.date_range,
+                                            textInputType: TextInputType.text),
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              taskNotifier.addTask(
+                                                  name: nameController.text,
+                                                  description:
+                                                      descriptionController
+                                                          .text,
+                                                  dateS: dateIController.text,
+                                                  dateF: dateFController.text,
+                                                  state: true,
+                                                  idProject: idProject);
+                                            },
+                                            child: const Text('Crear'))
+                                      ],
+                                    ),
                                   )),
                             )
                           : null;

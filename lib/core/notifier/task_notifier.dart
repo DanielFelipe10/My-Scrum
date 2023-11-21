@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_scrum/app/credentials/supabase_credentials.dart';
 import 'package:my_scrum/app/service/task_service.dart';
+import 'package:my_scrum/core/models/projects_model.dart';
 import 'package:supabase/supabase.dart';
 
 class TaskNotifier extends ChangeNotifier {
@@ -19,5 +21,12 @@ class TaskNotifier extends ChangeNotifier {
         dateF: dateF,
         state: state,
         idProject: idProject);
+  }
+
+  Future fetchProject() async {
+    List data = await _taskService.fetchProject();
+    return data
+        .map((projectElement) => Projects.fromJson(projectElement))
+        .toList();
   }
 }

@@ -120,6 +120,7 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             const SizedBox(height: 50),
+            /*
             Text(
               'O ingresa con',
               style: mainFont.copyWith(color: Colors.grey[600]),
@@ -143,7 +144,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 30),*/
             TextButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed(AppRoutes.registerRoute);
