@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_scrum/core/notifier/crud_notifier.dart';
+import 'package:my_scrum/core/notifier/task_notifier.dart';
 import 'package:my_scrum/meta/views/auth/custom_textfield.dart';
 import 'package:my_scrum/meta/views/auth/principal.dart';
 import 'package:provider/provider.dart';
@@ -52,6 +53,8 @@ class _TaskViewState extends State<TaskView> {
     bool statusProject = widget.statusProject;
     final CrudNotifier crudNotifier =
         Provider.of<CrudNotifier>(context, listen: false);
+    final TaskNotifier taskNotifier =
+        Provider.of<TaskNotifier>(context, listen: false);
     FlutterStatusbarcolor.setStatusBarColor(Colors.white);
     return Scaffold(
       appBar: AppBar(
@@ -92,7 +95,49 @@ class _TaskViewState extends State<TaskView> {
                         backgroundColor:
                             statusProject ? mainColor : Colors.grey),
                     onPressed: () {
-                      openDialog();
+                      statusProject
+                          ? showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                  title: const Text('Crear tarea'),
+                                  content: Column(
+                                    children: [
+                                      CustomTextField(
+                                          controller: nameController,
+                                          name: 'Nombre',
+                                          prefixIcon: Icons.abc,
+                                          textInputType: TextInputType.name),
+                                      CustomTextField(
+                                          controller: descriptionController,
+                                          name: 'Descripción',
+                                          prefixIcon: Icons.description,
+                                          textInputType: TextInputType.name),
+                                      CustomTextField(
+                                          controller: dateIController,
+                                          name: 'Fecha inicio',
+                                          prefixIcon: Icons.date_range_outlined,
+                                          textInputType: TextInputType.text),
+                                      CustomTextField(
+                                          controller: dateFController,
+                                          name: 'Fecha de cierre',
+                                          prefixIcon: Icons.date_range,
+                                          textInputType: TextInputType.text),
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            taskNotifier.addTask(
+                                                name: nameController.text,
+                                                description:
+                                                    descriptionController.text,
+                                                dateS: dateIController.text,
+                                                dateF: dateFController.text,
+                                                state: true,
+                                                idProject: idProject);
+                                          },
+                                          child: const Text('Crear'))
+                                    ],
+                                  )),
+                            )
+                          : null;
                     },
                     icon: const Icon(
                       Icons.add_box,
@@ -172,34 +217,4 @@ class _TaskViewState extends State<TaskView> {
       ),
     );
   }
-
-  Future openDialog() => showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-            title: const Text('Crear tarea'),
-            content: Column(
-              children: [
-                CustomTextField(
-                    controller: nameController,
-                    name: 'Nombre',
-                    prefixIcon: Icons.abc,
-                    textInputType: TextInputType.name),
-                CustomTextField(
-                    controller: nameController,
-                    name: 'Descripción',
-                    prefixIcon: Icons.description,
-                    textInputType: TextInputType.name),
-                CustomTextField(
-                    controller: nameController,
-                    name: 'Fecha inicio',
-                    prefixIcon: Icons.date_range_outlined,
-                    textInputType: TextInputType.datetime),
-                CustomTextField(
-                    controller: nameController,
-                    name: 'Fecha de cierre',
-                    prefixIcon: Icons.date_range,
-                    textInputType: TextInputType.datetime)
-              ],
-            )),
-      );
 }

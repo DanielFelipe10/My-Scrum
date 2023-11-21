@@ -1,7 +1,7 @@
 import 'package:my_scrum/app/credentials/supabase_credentials.dart';
 import 'package:supabase/supabase.dart';
 
-class CrudService {
+class TaskService {
   //Fetch data
   Future fetchProject() async {
     try {
@@ -22,7 +22,8 @@ class CrudService {
       required String description,
       required String dateS,
       required String dateF,
-      required bool status}) async {
+      required bool state,
+      required int idProject}) async {
     try {
       PostgrestResponse? response =
           await SupabaseCredentials.supabaseClient.from('Tasks').insert({
@@ -30,7 +31,8 @@ class CrudService {
         'description': description,
         'date_start': dateS,
         'date_finish': dateF,
-        'status': status
+        'state': state,
+        'id_project': idProject
       }).execute();
       if (response.data != null) {
         var data = response.data;

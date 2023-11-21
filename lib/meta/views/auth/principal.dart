@@ -214,11 +214,10 @@ class _PrincipalViewState extends State<PrincipalView> {
                 right: 25,
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    showModalBottomSheet(
+                    showDialog(
                         context: context,
-                        builder: (BuildContext context) {
-                          return SingleChildScrollView(
-                            child: Container(
+                        builder: (context) => AlertDialog(
+                                content: Container(
                               height: 350,
                               decoration: const BoxDecoration(
                                 color: Colors.white,
@@ -280,9 +279,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                                   ),
                                 ],
                               ),
-                            ),
-                          );
-                        });
+                            )));
                   },
                   label: Text(
                     'Crear proyecto',
