@@ -54,6 +54,9 @@ class _PrincipalViewState extends State<PrincipalView> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         List snapshotL = snapshot.data as List;
+                        List projectsWithTrueStatus = snapshotL
+                            .where((project) => project.status == true)
+                            .toList();
                         return LiquidPullToRefresh(
                           onRefresh: () async {
                             await Future.delayed(const Duration(seconds: 1));
@@ -120,7 +123,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                                       flex: 1,
                                       child: Card(
                                         color: Colors.white,
-                                        elevation: 5,
+                                        elevation: 4,
                                         child: Padding(
                                           padding: const EdgeInsets.all(10),
                                           child: Column(
@@ -136,7 +139,9 @@ class _PrincipalViewState extends State<PrincipalView> {
                                                     color: mainColor,
                                                   ),
                                                   Text(
-                                                    snapshotL.length.toString(),
+                                                    projectsWithTrueStatus
+                                                        .length
+                                                        .toString(),
                                                     style: titleFont.copyWith(
                                                         color: mainColor,
                                                         fontSize: 25),
@@ -160,7 +165,6 @@ class _PrincipalViewState extends State<PrincipalView> {
                                       Projects project = snapshotL[index];
                                       return Card(
                                           child: ListTile(
-                                        dense: true,
                                         title: Text(
                                           project.name,
                                           style: mainFont.copyWith(
