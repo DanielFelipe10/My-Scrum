@@ -7,8 +7,6 @@ import 'package:my_scrum/meta/views/auth/custom_textfield.dart';
 import 'package:my_scrum/meta/views/auth/tasks.dart';
 import 'package:provider/provider.dart';
 
-import '../../../app/routes/app_routes.dart';
-
 const mainColor = Color(0xFF009BFF);
 final TextStyle mainFont = GoogleFonts.raleway();
 final TextStyle titleFont = GoogleFonts.play(
@@ -64,59 +62,106 @@ class _PrincipalViewState extends State<PrincipalView> {
                           showChildOpacityTransition: false,
                           child: Column(
                             children: [
+                              Text('Mis proyectos'),
                               Padding(
                                 padding: const EdgeInsets.all(10),
                                 child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Card(
-                                      elevation: 20,
-                                      color: mainColor,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            const SizedBox(height: 8),
-                                            Text(
-                                              'Proyectos totales',
-                                              style: mainFont.copyWith(
-                                                  color: Colors.white),
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  snapshotL.length.toString(),
-                                                  style: titleFont.copyWith(
-                                                      color: Colors.white,
-                                                      fontSize: 20),
-                                                ),
-                                              ],
-                                            )
-                                          ],
+                                    Expanded(
+                                      child: Card(
+                                        color: Colors.white,
+                                        elevation: 10,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.adjust,
+                                                    color: mainColor,
+                                                  ),
+                                                  Text(
+                                                    snapshotL.length.toString(),
+                                                    style: titleFont.copyWith(
+                                                        color: mainColor,
+                                                        fontSize: 25),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                    const Card(
-                                      elevation: 20,
-                                      color: Colors.grey,
-                                      child: Padding(
-                                        padding: EdgeInsets.all(10),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            SizedBox(height: 8),
-                                            Text(
-                                              'Hola',
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            )
-                                          ],
+                                    Expanded(
+                                      child: Card(
+                                        color: Colors.white,
+                                        elevation: 10,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.adjust,
+                                                    color: Colors.grey,
+                                                  ),
+                                                  Text(
+                                                    snapshotL.length.toString(),
+                                                    style: titleFont.copyWith(
+                                                        color: Colors.grey,
+                                                        fontSize: 25),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    )
+                                    ),
+                                    Expanded(
+                                      child: Card(
+                                        color: mainColor,
+                                        elevation: 10,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.folder_rounded,
+                                                    color: Colors.white,
+                                                  ),
+                                                  Text(
+                                                    snapshotL.length.toString(),
+                                                    style: titleFont.copyWith(
+                                                        color: Colors.white,
+                                                        fontSize: 25),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
