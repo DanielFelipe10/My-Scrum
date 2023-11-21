@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:my_scrum/core/models/projects_model.dart';
@@ -28,13 +29,15 @@ class _PrincipalViewState extends State<PrincipalView> {
   Widget build(BuildContext context) {
     final CrudNotifier crudNotifier =
         Provider.of<CrudNotifier>(context, listen: false);
+    FlutterStatusbarcolor.setStatusBarColor(mainColor);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MyScrum',
       home: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          elevation: 0,
+          backgroundColor: Colors.grey[100],
           title: const Center(child: Text('MyScrum')),
           titleTextStyle: titleFont.copyWith(fontSize: 20),
         ),
@@ -62,7 +65,19 @@ class _PrincipalViewState extends State<PrincipalView> {
                           showChildOpacityTransition: false,
                           child: Column(
                             children: [
-                              Text('Mis proyectos'),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                'Mis proyectos',
+                                style: mainFont.copyWith(
+                                    fontSize: 15,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
                               Padding(
                                 padding: const EdgeInsets.all(10),
                                 child: Row(
@@ -70,71 +85,10 @@ class _PrincipalViewState extends State<PrincipalView> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
-                                      child: Card(
-                                        color: Colors.white,
-                                        elevation: 10,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: <Widget>[
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  const Icon(
-                                                    Icons.adjust,
-                                                    color: mainColor,
-                                                  ),
-                                                  Text(
-                                                    snapshotL.length.toString(),
-                                                    style: titleFont.copyWith(
-                                                        color: mainColor,
-                                                        fontSize: 25),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Card(
-                                        color: Colors.white,
-                                        elevation: 10,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: <Widget>[
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  const Icon(
-                                                    Icons.adjust,
-                                                    color: Colors.grey,
-                                                  ),
-                                                  Text(
-                                                    snapshotL.length.toString(),
-                                                    style: titleFont.copyWith(
-                                                        color: Colors.grey,
-                                                        fontSize: 25),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
+                                      flex: 2,
                                       child: Card(
                                         color: mainColor,
-                                        elevation: 10,
+                                        elevation: 5,
                                         child: Padding(
                                           padding: const EdgeInsets.all(10),
                                           child: Column(
@@ -162,46 +116,80 @@ class _PrincipalViewState extends State<PrincipalView> {
                                         ),
                                       ),
                                     ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Card(
+                                        color: Colors.white,
+                                        elevation: 5,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.adjust,
+                                                    color: mainColor,
+                                                  ),
+                                                  Text(
+                                                    snapshotL.length.toString(),
+                                                    style: titleFont.copyWith(
+                                                        color: mainColor,
+                                                        fontSize: 25),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
-                              ListView.builder(
-                                  padding: const EdgeInsets.all(5),
-                                  shrinkWrap: true,
-                                  itemCount: snapshotL.length,
-                                  itemBuilder: ((context, index) {
-                                    Projects project = snapshotL[index];
-                                    return Card(
-                                        child: ListTile(
-                                      dense: true,
-                                      title: Text(
-                                        project.name,
-                                        style: mainFont.copyWith(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      subtitle: Text(project.category),
-                                      trailing: project.status
-                                          ? const Icon(Icons.adjust,
-                                              color: mainColor, size: 16)
-                                          : const Icon(
-                                              Icons.adjust,
-                                              color: Colors.grey,
-                                              size: 16,
-                                            ),
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => TaskView(
-                                                  nameProject: project.name,
-                                                  categoryProject:
-                                                      project.category,
-                                                  statusProject:
-                                                      project.status),
-                                            ));
-                                      },
-                                    ));
-                                  })),
+                              Expanded(
+                                child: ListView.builder(
+                                    padding: const EdgeInsets.all(5),
+                                    shrinkWrap: false,
+                                    itemCount: snapshotL.length,
+                                    itemBuilder: ((context, index) {
+                                      Projects project = snapshotL[index];
+                                      return Card(
+                                          child: ListTile(
+                                        dense: true,
+                                        title: Text(
+                                          project.name,
+                                          style: mainFont.copyWith(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        subtitle: Text(project.category),
+                                        trailing: project.status
+                                            ? const Icon(Icons.adjust,
+                                                color: mainColor, size: 16)
+                                            : const Icon(
+                                                Icons.adjust,
+                                                color: Colors.grey,
+                                                size: 16,
+                                              ),
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => TaskView(
+                                                    nameProject: project.name,
+                                                    categoryProject:
+                                                        project.category,
+                                                    statusProject:
+                                                        project.status),
+                                              ));
+                                        },
+                                      ));
+                                    })),
+                              ),
                             ],
                           ),
                         );

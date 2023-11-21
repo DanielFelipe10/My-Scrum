@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/bi.dart';
@@ -31,6 +32,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     final AuthenticationNotifier authenticationNotifier =
         Provider.of<AuthenticationNotifier>(context, listen: false);
+    FlutterStatusbarcolor.setStatusBarColor(Colors.grey);
     return Scaffold(
       body: SafeArea(
         child: Center(

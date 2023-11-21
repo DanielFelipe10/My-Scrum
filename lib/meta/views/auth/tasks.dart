@@ -35,78 +35,93 @@ class _TaskViewState extends State<TaskView> {
     String nameProject = widget.nameProject;
     String categoryProject = widget.categoryProject;
     bool statusProject = widget.statusProject;
-    return Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        Column(
-          children: [
-            SizedBox(height: 20,)
-            Text(
-              nameProject,
-              style: titleFont.copyWith(fontSize: 30),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: mainColor),
+      ),
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          Container(
+            width: double.infinity,
+            color: Colors.white,
+            child: Column(
+              children: [
+                Icon(statusProject ? Icons.adjust : Icons.adjust,
+                    color: statusProject ? mainColor : Colors.grey),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  nameProject,
+                  style: titleFont.copyWith(fontSize: 25),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  categoryProject,
+                  style: mainFont.copyWith(color: Colors.black87, fontSize: 15),
+                )
+              ],
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              categoryProject,
-              style: mainFont,
-            )
-          ],
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                      height: 45,
-                      width: MediaQuery.of(context).size.width / 2 - 20,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (isPlaying) {
-                            _controller.stop();
-                          } else {
-                            _controller.play();
-                          }
-                          setState(() {
-                            isPlaying = !isPlaying;
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              isPlaying ? Colors.grey : Colors.green,
-                        ),
-                        child: Center(
-                          child: Text(isPlaying ? 'Empezar' : 'Finalizar'),
-                        ),
-                      )),
-                  SizedBox(
-                      height: 45,
-                      width: MediaQuery.of(context).size.width / 2 - 20,
-                      child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red[400],
-                          ),
-                          child: const Center(
-                            child: Text("Eliminar"),
-                          )))
-                ]),
           ),
-        ),
-        ConfettiWidget(
-          confettiController: _controller,
-          blastDirection: pi / 2,
-          colors: [Colors.blue, Colors.yellow, Colors.orange, Colors.indigo],
-          gravity: 0.01,
-          emissionFrequency: 0.2,
-        )
-      ],
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                        height: 45,
+                        width: MediaQuery.of(context).size.width / 2 - 20,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (isPlaying) {
+                              _controller.stop();
+                            } else {
+                              _controller.play();
+                            }
+                            setState(() {
+                              isPlaying = !isPlaying;
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                isPlaying ? Colors.grey : Colors.blue,
+                          ),
+                          child: Center(
+                            child: Text(isPlaying ? 'Empezar' : 'Finalizar'),
+                          ),
+                        )),
+                    SizedBox(
+                        height: 45,
+                        width: MediaQuery.of(context).size.width / 2 - 20,
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red[400],
+                            ),
+                            child: const Center(
+                              child: Text("Eliminar"),
+                            )))
+                  ]),
+            ),
+          ),
+          ConfettiWidget(
+            confettiController: _controller,
+            blastDirection: pi / 2,
+            colors: [Colors.blue, Colors.yellow, Colors.orange, Colors.indigo],
+            gravity: 0.01,
+            emissionFrequency: 0.2,
+          )
+        ],
+      ),
     );
   }
 }

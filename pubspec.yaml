@@ -32,6 +32,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  flutter_statusbarcolor_ns: ^0.5.0
   google_fonts: ^4.0.4
   iconify_flutter: ^0.0.5
   liquid_pull_to_refresh: ^3.0.1
