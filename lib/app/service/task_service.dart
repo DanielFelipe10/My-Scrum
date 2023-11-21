@@ -6,7 +6,7 @@ class CrudService {
   Future fetchProject() async {
     try {
       var response = await SupabaseCredentials.supabaseClient
-          .from('Projects')
+          .from('Tasks')
           .select()
           .execute();
       var data = response.data;
@@ -16,16 +16,22 @@ class CrudService {
     }
   }
 
-  //Create project
-  Future<PostgrestResponse?> addProject(
+  //Create task
+  Future<PostgrestResponse?> addTask(
       {required String name,
-      required String category,
+      required String description,
+      required String dateS,
+      required String dateF,
       required bool status}) async {
     try {
-      PostgrestResponse? response = await SupabaseCredentials.supabaseClient
-          .from('Projects')
-          .insert(
-              {'name': name, 'category': category, 'status': status}).execute();
+      PostgrestResponse? response =
+          await SupabaseCredentials.supabaseClient.from('Tasks').insert({
+        'name': name,
+        'description': description,
+        'date_start': dateS,
+        'date_finish': dateF,
+        'status': status
+      }).execute();
       if (response.data != null) {
         var data = response.data;
         return data;

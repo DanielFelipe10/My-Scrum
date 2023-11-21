@@ -3,10 +3,14 @@ import 'dart:math';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
-import 'package:my_scrum/app/routes/app_routes.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_scrum/core/notifier/crud_notifier.dart';
+import 'package:my_scrum/meta/views/auth/custom_textfield.dart';
 import 'package:my_scrum/meta/views/auth/principal.dart';
 import 'package:provider/provider.dart';
+
+const mainColor = Color(0xFF009BFF);
+final TextStyle mainFont = GoogleFonts.raleway();
 
 class TaskView extends StatefulWidget {
   final int idProject;
@@ -27,6 +31,10 @@ class TaskView extends StatefulWidget {
 }
 
 class _TaskViewState extends State<TaskView> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController dateIController = TextEditingController();
+  final TextEditingController dateFController = TextEditingController();
   final _controller = ConfettiController(duration: const Duration(seconds: 3));
   bool isPlaying = true;
 
@@ -74,7 +82,26 @@ class _TaskViewState extends State<TaskView> {
                 Text(
                   categoryProject,
                   style: mainFont.copyWith(color: Colors.black87, fontSize: 15),
-                )
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(300, 40),
+                        backgroundColor:
+                            statusProject ? mainColor : Colors.grey),
+                    onPressed: () {
+                      openDialog();
+                    },
+                    icon: const Icon(
+                      Icons.add_box,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      'Crear tarea',
+                      style: mainFont.copyWith(fontWeight: FontWeight.bold),
+                    ))
               ],
             ),
           ),
@@ -92,7 +119,7 @@ class _TaskViewState extends State<TaskView> {
                         width: MediaQuery.of(context).size.width / 2 - 20,
                         child: ElevatedButton(
                           onPressed: () {
-                            _controller.play;
+                            _controller.play();
                             if (statusProject) {
                               _controller.play();
                               crudNotifier.updateProject(
@@ -145,4 +172,34 @@ class _TaskViewState extends State<TaskView> {
       ),
     );
   }
+
+  Future openDialog() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+            title: const Text('Crear tarea'),
+            content: Column(
+              children: [
+                CustomTextField(
+                    controller: nameController,
+                    name: 'Nombre',
+                    prefixIcon: Icons.abc,
+                    textInputType: TextInputType.name),
+                CustomTextField(
+                    controller: nameController,
+                    name: 'Descripción',
+                    prefixIcon: Icons.description,
+                    textInputType: TextInputType.name),
+                CustomTextField(
+                    controller: nameController,
+                    name: 'Fecha inicio',
+                    prefixIcon: Icons.date_range_outlined,
+                    textInputType: TextInputType.datetime),
+                CustomTextField(
+                    controller: nameController,
+                    name: 'Fecha de cierre',
+                    prefixIcon: Icons.date_range,
+                    textInputType: TextInputType.datetime)
+              ],
+            )),
+      );
 }
