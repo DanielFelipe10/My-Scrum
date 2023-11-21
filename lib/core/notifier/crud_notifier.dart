@@ -27,4 +27,9 @@ class CrudNotifier extends ChangeNotifier {
   Future deleteProject({required int id}) async {
     await _crudService.deleteProject(id);
   }
+
+  Future<PostgrestResponse?> updateProject(
+      {required int id, required bool status}) async {
+    await _crudService.updateProject(id, status);
+  }
 }

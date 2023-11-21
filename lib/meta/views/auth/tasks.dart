@@ -28,7 +28,7 @@ class TaskView extends StatefulWidget {
 
 class _TaskViewState extends State<TaskView> {
   final _controller = ConfettiController(duration: const Duration(seconds: 3));
-  bool isPlaying = false;
+  bool isPlaying = true;
 
   @override
   void dispose() {
@@ -92,21 +92,24 @@ class _TaskViewState extends State<TaskView> {
                         width: MediaQuery.of(context).size.width / 2 - 20,
                         child: ElevatedButton(
                           onPressed: () {
-                            if (isPlaying) {
-                              _controller.stop();
-                            } else {
+                            _controller.play;
+                            if (statusProject) {
                               _controller.play();
+                              crudNotifier.updateProject(
+                                  id: idProject, status: false);
+                            } else {
+                              _controller.stop();
+                              crudNotifier.updateProject(
+                                  id: idProject, status: true);
                             }
-                            setState(() {
-                              isPlaying = !isPlaying;
-                            });
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                isPlaying ? Colors.grey : Colors.blue,
+                                statusProject ? Colors.blue : Colors.grey,
                           ),
                           child: Center(
-                            child: Text(isPlaying ? 'Empezar' : 'Finalizar'),
+                            child:
+                                Text(statusProject ? 'Finalizar' : 'Empezar'),
                           ),
                         )),
                     SizedBox(
