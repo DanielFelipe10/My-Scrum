@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:my_scrum/meta/views/auth/principal.dart';
 
 class TaskView extends StatefulWidget {
   final String nameProject;
@@ -37,21 +38,65 @@ class _TaskViewState extends State<TaskView> {
     return Stack(
       alignment: Alignment.topCenter,
       children: [
-        Scaffold(
-          appBar: AppBar(),
-          body: Center(
-            child: MaterialButton(
-              onPressed: () {
-                if (isPlaying) {
-                  _controller.stop();
-                } else {
-                  _controller.play();
-                }
-                isPlaying = !isPlaying;
-              },
-              child: Text('Conferi'),
-              color: Colors.amber,
+        Column(
+          children: [
+            SizedBox(height: 20,)
+            Text(
+              nameProject,
+              style: titleFont.copyWith(fontSize: 30),
             ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              categoryProject,
+              style: mainFont,
+            )
+          ],
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                      height: 45,
+                      width: MediaQuery.of(context).size.width / 2 - 20,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (isPlaying) {
+                            _controller.stop();
+                          } else {
+                            _controller.play();
+                          }
+                          setState(() {
+                            isPlaying = !isPlaying;
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              isPlaying ? Colors.grey : Colors.green,
+                        ),
+                        child: Center(
+                          child: Text(isPlaying ? 'Empezar' : 'Finalizar'),
+                        ),
+                      )),
+                  SizedBox(
+                      height: 45,
+                      width: MediaQuery.of(context).size.width / 2 - 20,
+                      child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red[400],
+                          ),
+                          child: const Center(
+                            child: Text("Eliminar"),
+                          )))
+                ]),
           ),
         ),
         ConfettiWidget(
